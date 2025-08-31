@@ -111,6 +111,7 @@ from sgl_kernel.sampling import (
     top_p_renorm_prob,
     top_p_sampling_from_probs,
 )
+from sgl_kernel.sparse import meanpooling
 from sgl_kernel.speculative import (
     build_tree_kernel_efficient,
     reconstruct_indices_from_tree_mask,

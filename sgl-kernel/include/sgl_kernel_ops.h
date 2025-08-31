@@ -968,3 +968,17 @@ std::vector<at::Tensor> fwd_kvcache_mla_fp8(
 
 std::vector<at::Tensor> get_mla_decoding_metadata_dense_fp8(
     at::Tensor& seqlens_k, const int64_t num_heads_per_head_k, const int64_t num_heads_k);
+
+void store_kv_cache(at::Tensor k_cache, at::Tensor v_cache, at::Tensor out_loc, at::Tensor k, at::Tensor v);
+/*
+ * From csrc/sparse
+ */
+torch::Tensor meanpooling(
+    const torch::Tensor& k_cache,
+    torch::Tensor& compressed_cache,
+    const torch::Tensor& begin_pos,
+    const torch::Tensor& compressed_len,
+    const std::optional<at::Tensor>& cu_begin_pos_,
+    const std::optional<at::Tensor>& cu_compressed_len_,
+    int64_t kernel_size,
+    int64_t stride);

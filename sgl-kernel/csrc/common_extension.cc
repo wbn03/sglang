@@ -589,6 +589,14 @@ TORCH_LIBRARY_FRAGMENT(sgl_kernel, m) {
 
   m.def("fast_hadamard_transform_40N(Tensor x, float scale) -> Tensor");
   m.impl("fast_hadamard_transform_40N", torch::kCUDA, &fast_hadamard_transform_40N);
+  /*
+   * From csrc/sparse
+   */
+  m.def(
+      "meanpooling(Tensor! k_cache, Tensor! compressed_cache, Tensor! begin_pos, "
+      "Tensor! compressed_len, Tensor? cu_begin_pos_, Tensor? cu_compressed_len_, "
+      "int kernel_size, int stride) -> Tensor");
+  m.impl("meanpooling", torch::kCUDA, &meanpooling);
 }
 
 REGISTER_EXTENSION(common_ops)
